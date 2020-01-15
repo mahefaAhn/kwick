@@ -260,6 +260,7 @@
                         text: `Session expirée. Veuillez vous reconnecter.`,
                     }).then((result) => {
                         if (result.value) {
+                            localStorage.clear;
                             window.location.href = urlRedirect;
                         }
                     });
@@ -381,6 +382,7 @@
                         text: `Session expirée. Veuillez vous reconnecter.`,
                     }).then((result) => {
                         if (result.value) {
+                            localStorage.clear;
                             window.location.href = urlRedirect;
                         }
                     });

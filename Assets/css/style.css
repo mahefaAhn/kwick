@@ -1,0 +1,111 @@
+/* LOGO */
+.kwick_logo{
+    font-weight     : bold;
+    color           : #2e84db !important;
+}
+
+/* LOGIN */
+.kwick_loginBox{
+    margin-top      : 100px;
+    padding-top     : 20px;
+    padding-bottom  : 20px;
+    background-color: #D9D9D9;
+    color           : #353535;
+}
+
+#kwick_login h3{
+    color           : #2e84db;
+}
+#kwick_login h3::first-letter{
+    color           : #03263D;
+}
+
+.kwick_btnSuscribe{
+    color           : black;
+    text-decoration : underline;
+}
+
+/* CHAT */
+.kwick_body{
+    margin          : 20px;
+}
+.kwick_chatBox{
+    min-height      : 500px; 
+    padding-top     : 20px;
+    padding-bottom  : 20px;
+    background-color: #D9D9D9;
+}
+.kwick_online{
+    min-height      : 500px; 
+    padding-top     : 20px;
+    padding-bottom  : 20px;
+    background-color: #D9D9D9;
+}
+
+.kwick_messageList{
+    margin-bottom   : 20px;
+    padding         : 10px;
+    min-height      : 200px ;
+    background-color: #FCFCFC;
+    height          : 400px;
+    overflow        : auto;
+}
+
+/* MESSAGE */
+.kwick_userMsg{
+    margin-bottom   : 10px;
+    padding         : 5px;
+    background-color: #D7D7D9;
+    width           : 70%;
+    word-wrap       : break-word;
+}
+.kwick_myMsg{
+    margin-bottom   : 10px;
+    padding         : 5px;
+    background-color: #2e84db;
+    width           : 70%;
+    margin-left     : 30%;
+    color           : white;
+    word-wrap       : break-word;
+}
+/*TEXT ALIGN*/
+.kwick_txt_right{
+    text-align      : right;
+}
+.kwick_txt_left{
+    text-align      : left;
+}
+.kwick_txt_justified{
+    text-align      : justified;
+}
+
+/* USER ONLINE*/
+.kwick_onlineList h3{
+    color           : #2e84db;
+    font-size       : 13pt ;
+    text-align      : center;
+}
+
+.kwick_onlineList ul {
+    list-style  : none;
+    margin      : 0 auto;
+}
+
+.kwick_onlineList ul li::before {
+    content     : "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+    color       : #2e84db; /* Change the color */
+    font-weight : bold; /* If you want it to be bold */
+    display     : inline-block; /* Needed to add space between the bullet and the text */
+    width       : 1em; /* Also needed for space (tweak if needed) */
+    margin-left : -1em; /* Also needed for space (tweak if needed) */
+    margin-bottom : 10px;
+}
+
+/* EMOJI */
+.kwick_emojiKeyboard{
+    margin-top  : 10px ;
+}
+.kwick_emojiBtn{
+    padding     : 2px;
+    background-color : #DBDBDB;
+}

@@ -239,6 +239,7 @@
             success: function (result, status, xhr) {
                 let _status         = getResultKwick(result, 'logged', 'status');
                 let userList        = getResultKwick(result, 'logged', 'user');
+                notifyFriendsOnline(userList);
                 if(_status=="done"){
                     const displayPeople = userList.map(user => displayUserConnected(user));
                     const countUser     = userList.length - 1;
@@ -297,7 +298,6 @@
                 let _status         = getResultKwick(result, 'say', 'status');
                 if(_status=="done"){
                     //Envoi de message  OK
-                    console.log("Message envoyé");
                 }else if(_status=="failure"){
                     //Modal
                     Swal.fire({
@@ -395,8 +395,9 @@
     }
 
     //Fonction pour afficher les emojis
-    function displayEmojisKeyboard(emoji){
-        let result = `<button class='kwick_emojiBtn' onclick='copyEmoji(`+emoji+`)'>&#`+emoji+`;</button>`;
+    function displayEmojisKeyboard(emojiCode){
+        let emoji   = String.fromCodePoint(emojiCode);
+        let result  = `<a class='kwick_emojiBtn' onclick='copyEmoji(event,`+emojiCode+`)'>`+emoji+`</a>`;
         return result;
     }
 
@@ -410,10 +411,13 @@
     }
 
     //Fonction pour copier les émojis dans le textarea
-    function copyEmoji(code){
-        let msgContent      = $('#message').val() + ' &#'+code+';';
-        console.log(msgContent);
-        $('#message').html(msgContent);
+    function copyEmoji(event,emojiCode){
+        event.preventDefault();
+        let emoji           = String.fromCodePoint(emojiCode);
+        let msgContent      = $('#message').val() + emoji;
+        $('#message').val(msgContent);
+        //Placer le curseur dans le zone de texte
+        var elem = document.getElementById('message');
+        elem.focus();
+        elem.selectionStart = elem.value.length;
     }
-
-    

@@ -13,11 +13,11 @@ function showModalUserStatus(username,status='online'){
 
 //Fonction pour confirmer si l'élément fait partie de la table
 function elementInTable(element,table){
+    let username  = localStorage.getItem('user');
     let result    = false;
     let sizeTable = table.length;
     let tempCount = 0;
-    for(let i=0;i<sizeTable;i++) if(element==table[i]) tempCount++;
-    if(element==localStorage.getItem('user')) tempCount--;
+    for(let i=0;i<sizeTable;i++) if(element==table[i] && element!=username) tempCount++;
     if(tempCount!=0) result = true;
     return result;
 }
@@ -34,7 +34,7 @@ function elementTable1ExistInTable2(table1, table2){
 
 //Fonction pour notifier les nouvelles personnes connectées et déconnectées
 function notifyFriendsOnline(userList){
-    //Récupérer la liste déjà enregistrer 
+    //Récupérer la liste déjà enregistrée 
     let temp_listBefore = localStorage.getItem('friendsOnline');
     if(temp_listBefore){
         //Convertir la liste d'avant en table

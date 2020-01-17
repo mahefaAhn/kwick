@@ -25,7 +25,7 @@
         <button class="btn btn-outline-primary my-2 my-sm-0" id="button_logOut" type="submit"><i class="fa fa-sign-out"></i> Se déconnecter</button>
     </div>
     </nav>
-    <div class="row kwick_body">
+    <div class="row kwick_body" id="kwick_content_user">
         <div class="col-md-3 offset-md-1 kwick_online d-block d-sm-none">
             <div class="kwick_onlineList rounded">
                 <h3 id="kwick_kwick_userConnected_title_lg"></h3>
@@ -62,7 +62,7 @@
     <script src="../Assets/js/friends.js"></script>
     <script src="../Assets/js/controller.js"></script> 
     <script>
-        loadEmojis();
+        checkUserConnexion();
         myVar = setInterval(function(){talkList(); logged();}, 5000);
     </script>
   </body>

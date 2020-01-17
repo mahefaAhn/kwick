@@ -1,5 +1,50 @@
     const server_url= "https://greenvelvet.alwaysdata.net/kwick/api/";
 
+    //Fonction pour charger le contenu de la page
+    function checkUserConnexion(){
+        $("#kwick_content_user").addClass("d-none");
+        //Vérifier la session
+        let token       = localStorage.getItem('token');
+        let _tempUrl = server_url+"user/logged/"+token;
+        $.ajax({
+            url: _tempUrl,
+            dataType: "jsonp",
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            success: function (result, status, xhr) {
+                let _status         = getResultKwick(result, 'logged', 'status');
+                if(_status=="done"){
+                    let timerInterval
+                    Swal.fire({
+                    title: `Notifications`,
+                    html: `Vos messages s'afficheront dans <b></b> millisecondes.`,
+                    timer: 5000,
+                    timerProgressBar: true,
+                    onBeforeOpen: () => {
+                        Swal.showLoading()
+                        timerInterval = setInterval(() => {
+                        Swal.getContent().querySelector('b')
+                            .textContent = Swal.getTimerLeft()
+                        }, 100)
+                    },
+                    onClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                    }).then((result) => {
+                    //if (result.dismiss === Swal.DismissReason.timer) console.log('I was closed by the timer');
+                    })
+                    $("#kwick_content_user").removeClass("d-none");
+                    loadEmojis();
+                }
+                else if(_status=="failure")     window.location.href = 'login.html';
+            },
+            error: function (xhr, status, error) {
+                console.log("Error");
+            }
+        });
+
+    }
+
     //Fonction pour vérifier la connexion
     function checkConnexion(){
         let token       = localStorage.getItem('token');
@@ -174,11 +219,11 @@
         if(_welcoming=='true'){
             Swal.fire({
                 position: 'top-end',
-                icon: 'success',
+                icon: 'info',
                 title: _textBienvenue,
                 showConfirmButton: false,
                 timer: 1500
-            })
+            });
             localStorage.setItem('welcoming', 'false');
         }
     }

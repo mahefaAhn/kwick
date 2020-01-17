@@ -17,6 +17,7 @@ function elementInTable(element,table){
     let sizeTable = table.length;
     let tempCount = 0;
     for(let i=0;i<sizeTable;i++) if(element==table[i]) tempCount++;
+    if(element==localStorage.getItem('user')) tempCount--;
     if(tempCount!=0) result = true;
     return result;
 }
@@ -35,18 +36,20 @@ function elementTable1ExistInTable2(table1, table2){
 function notifyFriendsOnline(userList){
     //Récupérer la liste déjà enregistrer 
     let temp_listBefore = localStorage.getItem('friendsOnline');
-    //Convertir la liste d'avant en table
-    let listBefore = temp_listBefore.split(",");
-    let listAfter  = userList;
-    //Comparaison des 2 tables pour voir les nouvelles personnes connectées
-    let userJoin   = elementTable1ExistInTable2(listAfter, listBefore);
-    for(let i=0;i<userJoin.length;i++){
-        showModalUserStatus(userJoin[i],'online');
+    if(temp_listBefore){
+        //Convertir la liste d'avant en table
+        let listBefore = temp_listBefore.split(",");
+        let listAfter  = userList;
+        //Comparaison des 2 tables pour voir les nouvelles personnes connectées
+        let userJoin   = elementTable1ExistInTable2(listAfter, listBefore);
+        for(let i=0;i<userJoin.length;i++){
+            showModalUserStatus(userJoin[i],'online');
+        }
+        //Comparaison des 2 tables pour voir les nouvelles personnes déconnectées
+        let userLeave   = elementTable1ExistInTable2(listBefore, listAfter);
+        for(let i=0;i<userLeave.length;i++){
+            showModalUserStatus(userLeave[i],'offline');
+        }
     }
-    //Comparaison des 2 tables pour voir les nouvelles personnes déconnectées
-    let userLeave   = elementTable1ExistInTable2(listBefore, listAfter);
-    for(let i=0;i<userLeave.length;i++){
-        showModalUserStatus(userLeave[i],'offline');
-    }
-    localStorage.setItem('friendsOnline', listAfter);
+    localStorage.setItem('friendsOnline', userList);
 }

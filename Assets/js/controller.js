@@ -21,7 +21,7 @@
         let username        = form_username.value;
         let password        = form_password.value;
         let pwdConfirm      = form_pwdConfirm.value;
-        if(password===pwd) signin(username,pwdConfirm);
+        if(password===pwdConfirm) signin(username,pwdConfirm);
         else{
             Swal.fire({
                 icon: 'error',

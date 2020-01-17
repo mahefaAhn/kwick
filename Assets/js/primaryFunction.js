@@ -92,6 +92,7 @@
             contentType: "application/json; charset=utf-8",
             success: function (result, status, xhr) {
                 let _status         = getResultKwick(result, 'signup', 'status');
+                console.log(result);
                 if(_status=="done"){
                     let token           = getResultKwick(result, 'login', 'token');
                     let idUser          = getResultKwick(result, 'login', 'id');
@@ -108,6 +109,8 @@
                         text: 'Enregistrement effectué.',
                     }).then((result) => {
                         if (result.value) {
+                            let fullUrl = window.location.href;
+                            if(fullUrl.split('Pages/').length != 0) urlRedirect     = "chat.html";
                             window.location.href = urlRedirect;
                         }
                     });

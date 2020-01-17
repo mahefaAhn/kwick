@@ -1,7 +1,7 @@
 //Notification si l'utilisateur est en ligne ou hors ligne
 function showModalUserStatus(username,status='online'){
-    let sentence = username+' est connecté(e)!';
-    if(status=='offline') sentence = username+' est déconnecté(e)!';
+    let sentence = username+` s'est connecté(e)!`;
+    if(status=='offline') sentence = username+` s'est déconnecté(e)!`;
     Swal.fire({
         position: 'top-end',
         icon: 'info',
@@ -31,7 +31,7 @@ function elementTable1ExistInTable2(table1, table2){
     return newUser;
 }
 
-//Fonction pour notifier les nouvelles personnes connectées
+//Fonction pour notifier les nouvelles personnes connectées et déconnectées
 function notifyFriendsOnline(userList){
     //Récupérer la liste déjà enregistrer 
     let temp_listBefore = localStorage.getItem('friendsOnline');
@@ -42,6 +42,11 @@ function notifyFriendsOnline(userList){
     let userJoin   = elementTable1ExistInTable2(listAfter, listBefore);
     for(let i=0;i<userJoin.length;i++){
         showModalUserStatus(userJoin[i],'online');
+    }
+    //Comparaison des 2 tables pour voir les nouvelles personnes déconnectées
+    let userLeave   = elementTable1ExistInTable2(listBefore, listAfter);
+    for(let i=0;i<userLeave.length;i++){
+        showModalUserStatus(userLeave[i],'offline');
     }
     localStorage.setItem('friendsOnline', listAfter);
 }

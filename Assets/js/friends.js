@@ -17,7 +17,8 @@ function elementInTable(element,table){
     let result    = false;
     let sizeTable = table.length;
     let tempCount = 0;
-    for(let i=0;i<sizeTable;i++) if(element==table[i] && element!=username) tempCount++;
+    //for(let i=0;i<sizeTable;i++) if(element==table[i] && element!=username) tempCount++;
+    for(let i=0;i<sizeTable;i++) if(element==table[i]) tempCount++;
     if(tempCount!=0) result = true;
     return result;
 }
